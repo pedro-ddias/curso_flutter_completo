@@ -1,0 +1,23 @@
+* É um flamework
+
+- Ferramenta para aplicações nativas (para Android e IOS) a partir de uma linguagem
+    Com um unico codigo-fonte, não é necessario usar dois diferentes para as duas plataformas
+
+- Linguagem por traz desse framework é o dart
+    Uma linguagem que o própio google administra
+
+- Utiliza-se o SDK 
+    Ferramentas para compilar seu código = desenvolver com facilidade
+- Framework (conjunto de recursos)
+    Componentes reutilizaveis na mesma biblioteca
+
+- Dart
+    Linguagem desenvolvida pelo google, como o própio framework também 
+    Focada em frontend (mobile | Web)
+    Tipagem forte
+    Orientada a Objeto
+    Tem influencia do C
+    
+
+
+    
