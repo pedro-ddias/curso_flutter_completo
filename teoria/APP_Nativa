@@ -1,0 +1,8 @@
+- Usamos a linguagem Dart como fundamento 
+    - Usando
+        - Utilitários e Widgets a partir do código
+        - Necessita do processo de conversão para "rodar" no Android e iphone, porque antes é uma linguagem nativa
+
+- RaisedButton() -> UIButton (iOS) e widget.Button (Android) - feito nos outros frameword
+- Flutter -> irá controlar cada pixel de pataformas diferentes de forma automatica, facilita a criação de jogos em diferentes plataformas
+                    - tem um maior controle e menor limitação, porque não tem precisa de tradução para outras linguagens suportadas em outras plataformas
