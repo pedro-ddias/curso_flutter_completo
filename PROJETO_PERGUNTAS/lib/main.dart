@@ -19,7 +19,7 @@ class PerguntasApp extends StatelessWidget {
       "Qual o seu animal favorito?"
     ];
 
-    responder() {
+    void responder() {
       print("Pergunta respondida!");
     }
 
@@ -36,20 +36,21 @@ class PerguntasApp extends StatelessWidget {
               //pergando a pergunta da posição 0 que criamos na lista no inicio do projeto
               Text(perguntas[0]),
               //o botao recebe um componente filho que é outro Widget
+              //responder sem os () você está chamando a função para executar
               // ignore: deprecated_member_use
               RaisedButton(
                 child: Text("Resposta 1"),
-                onPressed: responder(),
+                onPressed: responder,
               ),
               // ignore: deprecated_member_use
               RaisedButton(
                 child: Text("Resposta 2"),
-                onPressed: null,
+                onPressed: responder,
               ),
               // ignore: deprecated_member_use
               RaisedButton(
                 child: Text("Resposta 3"),
-                onPressed: null,
+                onPressed: responder,
               )
             ])));
   }
