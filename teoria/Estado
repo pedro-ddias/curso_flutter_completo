@@ -1,0 +1,14 @@
+O que são Estados do App:
+
+    - Geral: as informações ultilizadas por sua aplicação
+    - Estado do App: Usuários autenticados, Produtos carregados
+    - Estado do Widget: Valor do campo de entrada
+
+Diferenças:
+
+    - Statelees: Renderizar a interface gráfica do componente visual
+        Onde passamos parametros para aqueles documentos
+        Parametros (Dados de entrada)
+
+    - Stateful: Parecido, mas tem um estado externo
+        Estado interno pode mudar, diferente do outro que somente o externo 

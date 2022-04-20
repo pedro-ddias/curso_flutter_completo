@@ -1,29 +1,29 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, unnecessary_import, prefer_const_literals_to_create_immutables, unused_local_variable, unused_element, avoid_print
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, unnecessary_import, prefer_const_literals_to_create_immutables, unused_local_variable, unused_element, avoid_print, unused_import
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-// porta de entrada do programa para passarmos primeiro Widget
-void main(List<String> args) {
-  runApp(PerguntasApp());
-}
+//todos elementos de estado vão ser configurados nessa classe
+//para toda mudança que acontecer seja feita instantaneamento no visual
+class PerguntaAppState extends State<PerguntasApp> {
+  var perguntasselecionadas = 0;
 
-//faz com que possamos criar a Widget, por isso extendemos essa classe
-//a partir disso já importou o nosso componente
-class PerguntasApp extends StatelessWidget {
+  void responder() {
+    //para passar o que está sendo modificado internamente para a graficamente
+    setState(() {
+      perguntasselecionadas++;
+    });
+    print("Pergunta respondida!");
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<String> perguntas = [
       "Qual a sua cor favorita?",
       "Qual o seu animal favorito?"
     ];
-
-    var perguntasselecionadas = 0;
-    void responder() {
-      perguntasselecionadas++;
-      print("Pergunta respondida!");
-    }
 
     //cada componente tem um contexto
     // Widget é a raiz na aplicação
@@ -55,5 +55,19 @@ class PerguntasApp extends StatelessWidget {
                 onPressed: responder,
               )
             ])));
+  }
+}
+
+// porta de entrada do programa para passarmos primeiro Widget
+void main(List<String> args) {
+  runApp(PerguntasApp());
+}
+
+//faz com que possamos criar a Widget, por isso extendemos essa classe
+//a partir disso já importou o nosso componente
+class PerguntasApp extends StatefulWidget {
+  @override
+  State<PerguntasApp> createState() {
+    return PerguntaAppState();
   }
 }
