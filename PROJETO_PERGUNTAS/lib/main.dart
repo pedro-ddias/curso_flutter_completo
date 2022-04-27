@@ -4,6 +4,7 @@ import 'dart:html';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import './questao.dart';
 
 //todos elementos de estado vão ser configurados nessa classe
 //para toda mudança que acontecer seja feita instantaneamento no visual
@@ -36,7 +37,7 @@ class PerguntaAppState extends State<PerguntasApp> {
             ),
             body: Column(children: [
               //pergando a pergunta da posição 0 que criamos na lista no inicio do projeto
-              Text(perguntas[perguntasselecionadas]),
+              Questao(perguntas[perguntasselecionadas]),
               //o botao recebe um componente filho que é outro Widget
               //responder sem os () você está chamando a função para executar
               // ignore: deprecated_member_use
