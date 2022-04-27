@@ -1,0 +1,6 @@
+Margin - aquilo que separa o cantainer dos outros elementos
+    Border
+        Padding = espaçamento do própio container
+            child (=Conteudo)
+
+            - Todos esses elementos compoem o container
