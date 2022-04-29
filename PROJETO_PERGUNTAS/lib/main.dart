@@ -36,6 +36,12 @@ class PerguntaAppState extends State<PerguntasApp> {
       },
     ];
 
+    List<Widget> respostas = [];
+    for (String textoResp
+        in perguntas[perguntasselecionadas].cast()['respostas']) {
+      respostas.add(Resposta(textoResp, responder));
+    }
+
     //cada componente tem um contexto
     // Widget é a raiz na aplicação
     return MaterialApp(
@@ -49,9 +55,7 @@ class PerguntaAppState extends State<PerguntasApp> {
               //pergando a pergunta da posição 0 que criamos na lista no inicio do projeto
               Questao(perguntas[perguntasselecionadas]['texto'].toString()),
 
-              Resposta("Resposta 1", responder),
-              Resposta("Resposta 2", responder),
-              Resposta("Resposta 3", responder),
+              ...respostas,
             ])));
   }
 }
