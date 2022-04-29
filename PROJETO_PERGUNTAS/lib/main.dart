@@ -3,8 +3,9 @@
 import 'dart:html';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import './questao.dart';
-import './resposta.dart';
+import 'package:flutter_application_1/resultado.dart';
+import './resultado.dart';
+import './questionario.dart';
 
 //todos elementos de estado vão ser configurados nessa classe
 //para toda mudança que acontecer seja feita instantaneamento no visual
@@ -42,10 +43,6 @@ class PerguntaAppState extends State<PerguntasApp> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> respostas = temPerguntaSelecionada
-        ? perguntas[perguntasselecionadas].cast()['respostas']
-        : [];
-
     //cada componente tem um contexto
     // Widget é a raiz na aplicação
     return MaterialApp(
@@ -56,12 +53,11 @@ class PerguntaAppState extends State<PerguntasApp> {
             title: Text('Perguntas'),
           ),
           body: temPerguntaSelecionada
-              ? Column(children: <Widget>[
-                  //pergando a pergunta da posição 0 que criamos na lista no inicio do projeto
-                  Questao(perguntas[perguntasselecionadas]['texto'].toString()),
-                  ...respostas.map((t) => Resposta(t, responder)).toList(),
-                ])
-              : null),
+              ? Questionario(
+                  perguntas: perguntas,
+                  perguntasselecionadas: perguntasselecionadas,
+                  responder: responder)
+              : Resultado()),
     );
   }
 }
