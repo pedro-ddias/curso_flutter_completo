@@ -39,27 +39,9 @@ class PerguntaAppState extends State<PerguntasApp> {
               //pergando a pergunta da posição 0 que criamos na lista no inicio do projeto
               Questao(perguntas[perguntasselecionadas]),
 
-              Resposta("Resposta 1"),
-              Resposta("Resposta 2"),
-              Resposta("Resposta 3"),
-
-              // //o botao recebe um componente filho que é outro Widget
-              // //responder sem os () você está chamando a função para executar
-              // // ignore: deprecated_member_use
-              // RaisedButton(
-              //   child: Text("Resposta 1"),
-              //   onPressed: responder,
-              // ),
-              // // ignore: deprecated_member_use
-              // RaisedButton(
-              //   child: Text("Resposta 2"),
-              //   onPressed: responder,
-              // ),
-              // // ignore: deprecated_member_use
-              // RaisedButton(
-              //   child: Text("Resposta 3"),
-              //   onPressed: responder,
-              // )
+              Resposta("Resposta 1", responder),
+              Resposta("Resposta 2", responder),
+              Resposta("Resposta 3", responder),
             ])));
   }
 }
@@ -77,3 +59,22 @@ class PerguntasApp extends StatefulWidget {
     return PerguntaAppState();
   }
 }
+
+
+// //o botao recebe um componente filho que é outro Widget
+              // //responder sem os () você está chamando a função para executar
+              // // ignore: deprecated_member_use
+              // RaisedButton(
+              //   child: Text("Resposta 1"),
+              //   onPressed: responder,
+              // ),
+              // // ignore: deprecated_member_use
+              // RaisedButton(
+              //   child: Text("Resposta 2"),
+              //   onPressed: responder,
+              // ),
+              // // ignore: deprecated_member_use
+              // RaisedButton(
+              //   child: Text("Resposta 3"),
+              //   onPressed: responder,
+              // )
