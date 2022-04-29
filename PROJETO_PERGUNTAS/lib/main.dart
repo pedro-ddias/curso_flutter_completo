@@ -21,9 +21,19 @@ class PerguntaAppState extends State<PerguntasApp> {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> perguntas = [
-      "Qual a sua cor favorita?",
-      "Qual o seu animal favorito?"
+    final List<Map<String, Object>> perguntas = [
+      {
+        'texto': "Qual a sua cor favorita?",
+        'respostas': ['Preto', 'Amarelo', 'Verde', 'Vermelho'],
+      },
+      {
+        'texto': "Qual o seu animal favorito?",
+        'respostas': ['Gato', 'Cachorro', 'Calopsita', 'Elefante'],
+      },
+      {
+        'texto': "Qual o seu instrutor favorito?",
+        'respostas': ['Pedro', 'João', 'Maria', 'Ana'],
+      },
     ];
 
     //cada componente tem um contexto
@@ -37,7 +47,7 @@ class PerguntaAppState extends State<PerguntasApp> {
             ),
             body: Column(children: [
               //pergando a pergunta da posição 0 que criamos na lista no inicio do projeto
-              Questao(perguntas[perguntasselecionadas]),
+              Questao(perguntas[perguntasselecionadas]['texto'].toString()),
 
               Resposta("Resposta 1", responder),
               Resposta("Resposta 2", responder),
