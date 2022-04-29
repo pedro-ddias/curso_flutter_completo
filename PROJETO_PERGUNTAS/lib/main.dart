@@ -12,51 +12,57 @@ class PerguntaAppState extends State<PerguntasApp> {
   var perguntasselecionadas = 0;
 
   void responder() {
-    //para passar o que está sendo modificado internamente para a graficamente
-    setState(() {
-      perguntasselecionadas++;
-    });
-    print("Pergunta respondida!");
+    if (temPerguntaSelecionada) {
+      //para passar o que está sendo modificado internamente para a graficamente
+      setState(() {
+        perguntasselecionadas++;
+      });
+      print("Pergunta respondida!");
+    }
+  }
+
+  final List<Map<String, Object>> perguntas = [
+    {
+      'texto': "Qual a sua cor favorita?",
+      'respostas': ['Preto', 'Amarelo', 'Verde', 'Vermelho'],
+    },
+    {
+      'texto': "Qual o seu animal favorito?",
+      'respostas': ['Gato', 'Cachorro', 'Calopsita', 'Elefante'],
+    },
+    {
+      'texto': "Qual o seu instrutor favorito?",
+      'respostas': ['Pedro', 'João', 'Maria', 'Ana'],
+    },
+  ];
+
+  bool get temPerguntaSelecionada {
+    return perguntasselecionadas < perguntas.length;
   }
 
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, Object>> perguntas = [
-      {
-        'texto': "Qual a sua cor favorita?",
-        'respostas': ['Preto', 'Amarelo', 'Verde', 'Vermelho'],
-      },
-      {
-        'texto': "Qual o seu animal favorito?",
-        'respostas': ['Gato', 'Cachorro', 'Calopsita', 'Elefante'],
-      },
-      {
-        'texto': "Qual o seu instrutor favorito?",
-        'respostas': ['Pedro', 'João', 'Maria', 'Ana'],
-      },
-    ];
-
-    List<Widget> respostas = [];
-    for (String textoResp
-        in perguntas[perguntasselecionadas].cast()['respostas']) {
-      respostas.add(Resposta(textoResp, responder));
-    }
+    List<String> respostas = temPerguntaSelecionada
+        ? perguntas[perguntasselecionadas].cast()['respostas']
+        : [];
 
     //cada componente tem um contexto
     // Widget é a raiz na aplicação
     return MaterialApp(
-        // estrutura da aplicação
-        home: Scaffold(
-            //appBar tem o um componente que chama-se AppBar
-            appBar: AppBar(
-              title: Text('Perguntas'),
-            ),
-            body: Column(children: [
-              //pergando a pergunta da posição 0 que criamos na lista no inicio do projeto
-              Questao(perguntas[perguntasselecionadas]['texto'].toString()),
-
-              ...respostas,
-            ])));
+      // estrutura da aplicação
+      home: Scaffold(
+          //appBar tem o um componente que chama-se AppBar
+          appBar: AppBar(
+            title: Text('Perguntas'),
+          ),
+          body: temPerguntaSelecionada
+              ? Column(children: <Widget>[
+                  //pergando a pergunta da posição 0 que criamos na lista no inicio do projeto
+                  Questao(perguntas[perguntasselecionadas]['texto'].toString()),
+                  ...respostas.map((t) => Resposta(t, responder)).toList(),
+                ])
+              : null),
+    );
   }
 }
 
