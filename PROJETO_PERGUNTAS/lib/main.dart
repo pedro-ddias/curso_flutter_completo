@@ -11,12 +11,14 @@ import './questionario.dart';
 //para toda mudança que acontecer seja feita instantaneamento no visual
 class PerguntaAppState extends State<PerguntasApp> {
   var perguntasselecionadas = 0;
+  var notaTotal = 0;
 
-  void responder() {
+  void responder(int nota) {
     if (temPerguntaSelecionada) {
       //para passar o que está sendo modificado internamente para a graficamente
       setState(() {
         perguntasselecionadas++;
+        notaTotal = nota + notaTotal;
       });
       print("Pergunta respondida!");
     }
@@ -25,15 +27,30 @@ class PerguntaAppState extends State<PerguntasApp> {
   final List<Map<String, Object>> perguntas = [
     {
       'texto': "Qual a sua cor favorita?",
-      'respostas': ['Preto', 'Amarelo', 'Verde', 'Vermelho'],
+      'respostas': [
+        {'texto': 'Preto', 'nota': 10},
+        {'texto': 'Amarelo', 'nota': 5},
+        {'texto': 'Verde', 'nota': 3},
+        {'texto': 'Vermelho', 'nota': 1},
+      ],
     },
     {
       'texto': "Qual o seu animal favorito?",
-      'respostas': ['Gato', 'Cachorro', 'Calopsita', 'Elefante'],
+      'respostas': [
+        {'texto': 'Gato', 'nota': 5},
+        {'texto': 'Cachorro', 'nota': 1},
+        {'texto': 'Calopsita', 'nota': 10},
+        {'texto': 'Elefante', 'nota': 3},
+      ],
     },
     {
       'texto': "Qual o seu instrutor favorito?",
-      'respostas': ['Pedro', 'João', 'Maria', 'Ana'],
+      'respostas': [
+        {'texto': 'Pedro', 'nota': 10},
+        {'texto': 'João', 'nota': 3},
+        {'texto': 'Maria', 'nota': 5},
+        {'texto': 'Ana', 'nota': 1},
+      ],
     },
   ];
 
@@ -56,8 +73,8 @@ class PerguntaAppState extends State<PerguntasApp> {
               ? Questionario(
                   perguntas: perguntas,
                   perguntasselecionadas: perguntasselecionadas,
-                  responder: responder)
-              : Resultado()),
+                  responderCorreto: responder)
+              : Resultado(notaTotal)),
     );
   }
 }
