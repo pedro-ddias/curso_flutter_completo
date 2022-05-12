@@ -24,6 +24,13 @@ class PerguntaAppState extends State<PerguntasApp> {
     }
   }
 
+  void reiniciarQuestionario() {
+    setState(() {
+      perguntasselecionadas = 0;
+      notaTotal = 0;
+    });
+  }
+
   final List<Map<String, Object>> perguntas = [
     {
       'texto': "Qual a sua cor favorita?",
@@ -74,7 +81,7 @@ class PerguntaAppState extends State<PerguntasApp> {
                   perguntas: perguntas,
                   perguntasselecionadas: perguntasselecionadas,
                   responderCorreto: responder)
-              : Resultado(notaTotal)),
+              : Resultado(notaTotal, reiniciarQuestionario)),
     );
   }
 }
