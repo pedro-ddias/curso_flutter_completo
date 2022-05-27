@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, sized_box_for_whitespace
+import 'package:despesas/models/transection.dart';
 import 'package:flutter/material.dart';
 
 main() => runApp(DespesasApp());
@@ -13,6 +14,12 @@ class DespesasApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
+  final _transections = [
+    transection(
+        date: DateTime.now(), id: 't1', title: 'Tenis Novo', value: 310.99),
+    transection(
+        date: DateTime.now(), id: 't2', title: 'Conta Luz', value: 250.11),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
