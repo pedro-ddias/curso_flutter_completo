@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, sized_box_for_whitespace, avoid_unnecessary_containers
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, sized_box_for_whitespace, avoid_unnecessary_containers, deprecated_member_use, avoid_print
 import 'package:despesas/models/transection.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -15,12 +15,16 @@ class DespesasApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
+  final titleController = TextEditingController();
+  final valueController = TextEditingController();
+
   final _transections = [
     transection(
         date: DateTime.now(), id: 't1', title: 'Tenis Novo', value: 310.99),
     transection(
         date: DateTime.now(), id: 't2', title: 'Conta Luz', value: 250.11),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,6 +86,42 @@ class MyHomePage extends StatelessWidget {
                     ],
                   ));
                 }).toList(),
+              ),
+              Card(
+                elevation: 5,
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    // ignore: prefer_const_literals_to_create_immutables
+                    children: <Widget>[
+                      TextField(
+                        controller: titleController,
+                        decoration: InputDecoration(
+                          labelText: 'Título',
+                        ),
+                      ),
+                      TextField(
+                        controller: valueController,
+                        decoration: InputDecoration(
+                          labelText: 'Valor(R\$)',
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          FlatButton(
+                            child: Text('Nova Transação'),
+                            textColor: Colors.purple,
+                            onPressed: () {
+                              print(titleController.text);
+                              print(valueController.text);
+                            },
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
               )
             ]));
   }
