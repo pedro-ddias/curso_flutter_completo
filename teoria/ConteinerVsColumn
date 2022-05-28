@@ -1,0 +1,11 @@
+- Conteiner
+    Aceita exatamente um Widget como filho
+    Alinhamento Fléxivel e opções de estilo
+    Largura flexivel
+    Perfeito para alinhamento e estilo
+
+- Column / Row
+    Aceita uma lista de Widgets como filho
+    Alinhamento, mas não tem estilo
+    Sempre ocupa toda altura / largura
+    Organizar
