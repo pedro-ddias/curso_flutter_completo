@@ -1,7 +1,7 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, sized_box_for_whitespace, avoid_unnecessary_containers, deprecated_member_use, avoid_print
-import 'package:despesas/models/transection.dart';
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, sized_box_for_whitespace, avoid_unnecessary_containers, deprecated_member_use, avoid_print, unused_import
+
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'components/transection_user.dart';
 
 main() => runApp(DespesasApp());
 
@@ -15,16 +15,6 @@ class DespesasApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  final titleController = TextEditingController();
-  final valueController = TextEditingController();
-
-  final _transections = [
-    transection(
-        date: DateTime.now(), id: 't1', title: 'Tenis Novo', value: 310.99),
-    transection(
-        date: DateTime.now(), id: 't2', title: 'Conta Luz', value: 250.11),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,89 +30,7 @@ class MyHomePage extends StatelessWidget {
                   child: Text('Gráfico'),
                 ),
               ),
-              Column(
-                // ignore: prefer_const_literals_to_create_immutables
-                children: _transections.map((tr) {
-                  return Card(
-                      child: Row(
-                    children: <Widget>[
-                      Container(
-                        margin:
-                            EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.purple,
-                            width: 3,
-                          ),
-                        ),
-                        padding: EdgeInsets.all(10),
-                        child: Text(
-                          'R\$ ${tr.value.toStringAsFixed(2)}',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.purple,
-                          ),
-                        ),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            tr.title,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            DateFormat('d/MM/y').format(tr.date),
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 103, 103, 103),
-                            ),
-                          )
-                        ],
-                      )
-                    ],
-                  ));
-                }).toList(),
-              ),
-              Card(
-                elevation: 5,
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    // ignore: prefer_const_literals_to_create_immutables
-                    children: <Widget>[
-                      TextField(
-                        controller: titleController,
-                        decoration: InputDecoration(
-                          labelText: 'Título',
-                        ),
-                      ),
-                      TextField(
-                        controller: valueController,
-                        decoration: InputDecoration(
-                          labelText: 'Valor(R\$)',
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          FlatButton(
-                            child: Text('Nova Transação'),
-                            textColor: Colors.purple,
-                            onPressed: () {
-                              print(titleController.text);
-                              print(valueController.text);
-                            },
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-              )
+              TransectionUser(),
             ]));
   }
 }
