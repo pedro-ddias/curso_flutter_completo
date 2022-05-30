@@ -21,16 +21,18 @@ class MyHomePage extends StatelessWidget {
         appBar: AppBar(
           title: Text('Despesas Pessoais'),
         ),
-        body: Column(
-            // ignore: prefer_const_literals_to_create_immutables
-            children: <Widget>[
-              Container(
-                width: double.infinity,
-                child: Card(
-                  child: Text('Gráfico'),
+        body: SingleChildScrollView(
+          child: Column(
+              // ignore: prefer_const_literals_to_create_immutables
+              children: <Widget>[
+                Container(
+                  width: double.infinity,
+                  child: Card(
+                    child: Text('Gráfico'),
+                  ),
                 ),
-              ),
-              TransectionUser(),
-            ]));
+                TransectionUser(),
+              ]),
+        ));
   }
 }

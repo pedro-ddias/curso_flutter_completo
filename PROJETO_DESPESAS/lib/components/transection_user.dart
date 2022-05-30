@@ -1,4 +1,6 @@
-// ignore_for_file: unused_import, use_key_in_widget_constructors, unnecessary_import, no_logic_in_create_state
+// ignore_for_file: unused_import, use_key_in_widget_constructors, unnecessary_import, no_logic_in_create_state, unused_local_variable
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 // ignore: implementation_imports
 import 'package:despesas/components/transection_form.dart';
@@ -25,12 +27,24 @@ class _TransectionUserState extends State<TransectionUser> {
         date: DateTime.now(), id: 't2', title: 'Conta Luz', value: 250.11),
   ];
 
+  _addTransection(String title, double value) {
+    final newTransection = transection(
+        date: DateTime.now(),
+        id: Random().nextDouble().toString(),
+        title: title,
+        value: value);
+
+    setState(() {
+      _transections.add(newTransection);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         TransectionList(_transections),
-        TransectionForm(),
+        TransectionForm(_addTransection),
       ],
     );
   }
