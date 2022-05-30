@@ -14,6 +14,17 @@ class TransectionForm extends StatelessWidget {
 
   TransectionForm(this.onSubmit);
 
+  _submitForm() {
+    final title = titleController.text;
+    final value = double.tryParse(valueController.text) ?? 0.0;
+
+// caso o nome não for válido e o valor menor ou igual a zero a transação não é válida e retorna a função
+    if (title.isEmpty || value <= 0) {
+      return;
+    }
+    onSubmit(title, value);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -25,6 +36,7 @@ class TransectionForm extends StatelessWidget {
           children: <Widget>[
             TextField(
               controller: titleController,
+              onSubmitted: (_) => _submitForm(),
               // ignore: prefer_const_constructors
               decoration: InputDecoration(
                 labelText: 'Título',
@@ -32,6 +44,9 @@ class TransectionForm extends StatelessWidget {
             ),
             TextField(
               controller: valueController,
+              // para aparecer o teclado de número
+              keyboardType: TextInputType.numberWithOptions(decimal: true),
+              onSubmitted: (_) => _submitForm(),
               // ignore: prefer_const_constructors
               decoration: InputDecoration(
                 labelText: 'Valor(R\$)',
@@ -43,11 +58,7 @@ class TransectionForm extends StatelessWidget {
                 FlatButton(
                   child: Text('Nova Transação'),
                   textColor: Colors.purple,
-                  onPressed: () {
-                    final title = titleController.text;
-                    final value = double.tryParse(valueController.text) ?? 0.0;
-                    onSubmit(title, value);
-                  },
+                  onPressed: _submitForm,
                 ),
               ],
             )
