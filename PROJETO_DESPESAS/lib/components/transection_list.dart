@@ -24,7 +24,7 @@ class TransectionList extends StatelessWidget {
                 margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: Theme.of(context).primaryColor,
+                    color: Colors.purple,
                     width: 3,
                   ),
                 ),
@@ -34,7 +34,7 @@ class TransectionList extends StatelessWidget {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
-                    color: Theme.of(context).primaryColor,
+                    color: Colors.purple,
                   ),
                 ),
               ),

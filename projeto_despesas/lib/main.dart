@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, sized_box_for_whitespace
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, sized_box_for_whitespace, duplicate_ignore, deprecated_member_use
 
 import 'package:flutter/material.dart';
 import 'dart:math';
@@ -15,29 +15,9 @@ class ExpensesApp extends StatelessWidget {
 
     return MaterialApp(
       home: MyHomePage(),
-      theme: tema.copyWith(
-        colorScheme: tema.colorScheme.copyWith(
-          primary: Colors.purple,
-          secondary: Colors.amber,
-        ),
-        textTheme: tema.textTheme.copyWith(
-          // ignore: prefer_const_constructors
-          headline6: TextStyle(
-            fontFamily: 'OpenSans',
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
-        ),
-        // ignore: prefer_const_constructors
-        appBarTheme: AppBarTheme(
-          // ignore: prefer_const_constructors
-          titleTextStyle: TextStyle(
-            fontFamily: 'OpenSans',
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+        accentColor: Colors.purple,
       ),
     );
   }
@@ -117,7 +97,9 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: Icon(
+          Icons.add,
+        ),
         onPressed: () => _openTransactionFormModal(context),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
