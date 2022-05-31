@@ -1,7 +1,7 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors_in_immutables, prefer_const_constructors, unused_import, avoid_unnecessary_containers, sized_box_for_whitespace
 import 'package:flutter/material.dart';
 import 'package:despesas/models/transection.dart';
-import 'package:intl/intl.dart';
+import "package:intl/intl.dart";
 
 class TransectionList extends StatelessWidget {
   final List<transection> transections;

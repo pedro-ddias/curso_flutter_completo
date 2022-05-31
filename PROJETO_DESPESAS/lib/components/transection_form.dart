@@ -6,13 +6,19 @@ import 'package:flutter/src/foundation/key.dart';
 // ignore: implementation_imports
 import 'package:flutter/src/widgets/framework.dart';
 
-class TransectionForm extends StatelessWidget {
-  final titleController = TextEditingController();
-  final valueController = TextEditingController();
-
+class TransectionForm extends StatefulWidget {
   final void Function(String, double) onSubmit;
 
   TransectionForm(this.onSubmit);
+
+  @override
+  State<TransectionForm> createState() => _TransectionFormState();
+}
+
+class _TransectionFormState extends State<TransectionForm> {
+  final titleController = TextEditingController();
+
+  final valueController = TextEditingController();
 
   _submitForm() {
     final title = titleController.text;
@@ -22,7 +28,7 @@ class TransectionForm extends StatelessWidget {
     if (title.isEmpty || value <= 0) {
       return;
     }
-    onSubmit(title, value);
+    widget.onSubmit(title, value);
   }
 
   @override
