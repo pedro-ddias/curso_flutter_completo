@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, sized_box_for_whitespace, duplicate_ignore, deprecated_member_use
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, sized_box_for_whitespace, duplicate_ignore, deprecated_member_use, unused_local_variable
 
 import 'package:flutter/material.dart';
 import 'dart:math';
@@ -11,13 +11,12 @@ main() => runApp(ExpensesApp());
 class ExpensesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final ThemeData tema = ThemeData();
-
     return MaterialApp(
       home: MyHomePage(),
       theme: ThemeData(
         primarySwatch: Colors.purple,
         accentColor: Colors.purple,
+        fontFamily: 'Quicksand',
       ),
     );
   }
@@ -72,7 +71,14 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Despesas Pessoais'),
+        title: Text(
+          'Despesas Pessoais',
+          style: TextStyle(
+            fontFamily: 'OpenSans',
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),

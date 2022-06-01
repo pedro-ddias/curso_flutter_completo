@@ -44,6 +44,7 @@ class TransectionList extends StatelessWidget {
                   Text(
                     tr.title,
                     style: TextStyle(
+                      fontFamily: 'OpenSans',
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
