@@ -17,7 +17,7 @@ class TransectionList extends StatelessWidget {
       child: transections.isEmpty
           ? Column(
               // ignore: prefer_const_literals_to_create_immutables
-              children: [
+              children: <Widget>[
                 SizedBox(height: 20),
                 Text(
                   'Nenhuma transação Cadastrada',
@@ -31,7 +31,7 @@ class TransectionList extends StatelessWidget {
                 Container(
                   height: 200,
                   child: Image.asset(
-                    'assets\images\waiting.png',
+                    'assets/images/waiting.png',
                     fit: BoxFit.cover,
                   ),
                 ),
