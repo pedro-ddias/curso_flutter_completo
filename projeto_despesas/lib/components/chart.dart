@@ -37,12 +37,15 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    groupedTransactions;
     return Card(
       elevation: 6,
       margin: EdgeInsets.all(20),
       child: Row(
         // ignore: prefer_const_literals_to_create_immutables
-        children: <Widget>[],
+        children: groupedTransactions.map((tr) {
+          return Text('${tr['day']}: ${tr['value']}');
+        }).toList(),
       ),
     );
   }

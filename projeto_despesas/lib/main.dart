@@ -1,10 +1,12 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, sized_box_for_whitespace, duplicate_ignore, deprecated_member_use, unused_local_variable
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, sized_box_for_whitespace, duplicate_ignore, deprecated_member_use, unused_local_variable, unused_element, avoid_unnecessary_containers
 
+import 'package:despesas/components/chart.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 import './components/transection_form.dart';
 import './components/transection_list.dart';
 import 'models/transection.dart';
+import 'components/chart.dart';
 
 main() => runApp(ExpensesApp());
 
@@ -42,6 +44,17 @@ class _MyHomePageState extends State<MyHomePage> {
     //   date: DateTime.now(),
     // ),
   ];
+
+  List<transection> get _recentTransection {
+    //recebe o elemento como padrão
+    //mostrar apenas as ultimas transações dos últimos 7 dias
+    return _transactions.where((tr) {
+      //se a data for de uma data substituida a 7 dias atras
+      return tr.date.isAfter(DateTime.now().subtract(
+        Duration(days: 7),
+      ));
+    }).toList();
+  }
 
   _addTransaction(String title, double value) {
     final newTransaction = transection(
@@ -90,14 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              width: double.infinity,
-              child: Card(
-                color: Colors.blue,
-                child: Text('Gráfico'),
-                elevation: 5,
-              ),
-            ),
+            Chart(_recentTransection),
             TransectionList(_transactions),
           ],
         ),
