@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_const_constructors, unused_import, use_key_in_widget_constructors, prefer_const_constructors_in_immutables, unused_local_variable, unrelated_type_equality_checks
+import 'package:despesas/components/chart_bar.dart';
 import 'package:despesas/components/transection_form.dart';
 
 import 'package:intl/intl.dart';
@@ -35,17 +36,36 @@ class Chart extends StatelessWidget {
     });
   }
 
+//total gasto nequela semana
+  double get _weelTotalValue {
+    // uma função com acumulador
+    return groupedTransactions.fold(0.0, (sum, tr) {
+      return sum + (tr['value'] as double);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     groupedTransactions;
     return Card(
       elevation: 6,
       margin: EdgeInsets.all(20),
-      child: Row(
-        // ignore: prefer_const_literals_to_create_immutables
-        children: groupedTransactions.map((tr) {
-          return Text('${tr['day']}: ${tr['value']}');
-        }).toList(),
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Row(
+          //eixo da linha
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          // ignore: prefer_const_literals_to_create_immutables
+          children: groupedTransactions.map((tr) {
+            return Flexible(
+              fit: FlexFit.tight,
+              child: ChartBar(
+                  label: tr['day'].toString(),
+                  value: tr['value'] as double,
+                  percentage: (tr['value'] as double) / _weelTotalValue),
+            );
+          }).toList(),
+        ),
       ),
     );
   }
