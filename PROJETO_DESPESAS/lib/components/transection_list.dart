@@ -5,13 +5,14 @@ import "package:intl/intl.dart";
 
 class TransectionList extends StatelessWidget {
   final List<transection> transections;
+  final void Function(String) onRemove;
 
-  TransectionList(this.transections);
+  TransectionList(this.transections, this.onRemove);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      height: 620,
       // irá rodar a lista caso haja elemento, se não roda a coluna
       // para renderizar na tela a quantidade visivel
       child: transections.isEmpty
@@ -65,6 +66,11 @@ class TransectionList extends StatelessWidget {
                     ),
                     subtitle: Text(
                       DateFormat('d MMM y').format(tr.date),
+                    ),
+                    trailing: IconButton(
+                      icon: Icon(Icons.delete),
+                      color: Theme.of(context).errorColor,
+                      onPressed: () => onRemove(tr.id),
                     ),
                   ),
                 );

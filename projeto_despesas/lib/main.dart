@@ -16,15 +16,28 @@ class ExpensesApp extends StatelessWidget {
     return MaterialApp(
       home: MyHomePage(),
       theme: ThemeData(
-          primarySwatch: Colors.purple,
-          accentColor: Colors.purple,
-          fontFamily: 'Quicksand',
-          appBarTheme: AppBarTheme(
-              textTheme: ThemeData.light().textTheme.copyWith(
-                  headline6: TextStyle(
-                      fontFamily: 'OpenSans',
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold)))),
+        primarySwatch: Colors.purple,
+        accentColor: Colors.purple,
+        fontFamily: 'Quicksand',
+        textTheme: ThemeData.light().textTheme.copyWith(
+              headline6: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+              button: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+        appBarTheme: AppBarTheme(
+          textTheme: ThemeData.light().textTheme.copyWith(
+                headline6: TextStyle(
+                    fontFamily: 'OpenSans',
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
+        ),
+      ),
     );
   }
 }
@@ -35,38 +48,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<transection> _transactions = [
-    transection(
-      id: 't1',
-      title: 'Novo Tênis de Corrida',
-      value: 310.76,
-      date: DateTime.now().subtract(Duration(days: 3)),
-    ),
-    transection(
-      id: 't2',
-      title: 'Conta de Luz',
-      value: 210.30,
-      date: DateTime.now().subtract(Duration(days: 4)),
-    ),
-    transection(
-      id: 't3',
-      title: 'Conta de Internet',
-      value: 110.00,
-      date: DateTime.now().subtract(Duration(days: 5)),
-    ),
-    transection(
-      id: 't4',
-      title: 'Conta de Água',
-      value: 80.00,
-      date: DateTime.now().subtract(Duration(days: 6)),
-    ),
-    transection(
-      id: 't5',
-      title: 'Lanche Shopping',
-      value: 50.00,
-      date: DateTime.now(),
-    ),
-  ];
+  final List<transection> _transactions = [];
 
   List<transection> get _recentTransection {
     //recebe o elemento como padrão
@@ -79,12 +61,12 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  _addTransaction(String title, double value) {
+  _addTransaction(String title, double value, DateTime date) {
     final newTransaction = transection(
       id: Random().nextDouble().toString(),
       title: title,
       value: value,
-      date: DateTime.now(),
+      date: date,
     );
 
     setState(() {
@@ -92,6 +74,14 @@ class _MyHomePageState extends State<MyHomePage> {
     });
 
     Navigator.of(context).pop();
+  }
+
+  _deleteTransection(String id) {
+    setState(() {
+      _transactions.removeWhere((tr) {
+        return tr.id == id;
+      });
+    });
   }
 
   _openTransactionFormModal(BuildContext context) {
@@ -127,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Chart(_recentTransection),
-            TransectionList(_transactions),
+            TransectionList(_transactions, _deleteTransection),
           ],
         ),
       ),
