@@ -1,5 +1,3 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, sized_box_for_whitespace
-
 import 'package:flutter/material.dart';
 
 class ChartBar extends StatelessWidget {
@@ -18,7 +16,9 @@ class ChartBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text('R\$${value!.toStringAsFixed(2)}'),
+        FittedBox(
+          child: Text('${value!.toStringAsFixed(2)}'),
+        ),
         const SizedBox(height: 5),
         SizedBox(
           height: 60,
