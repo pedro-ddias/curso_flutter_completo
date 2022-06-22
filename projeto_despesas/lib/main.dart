@@ -16,10 +16,15 @@ class ExpensesApp extends StatelessWidget {
     return MaterialApp(
       home: MyHomePage(),
       theme: ThemeData(
-        primarySwatch: Colors.purple,
-        accentColor: Colors.purple,
-        fontFamily: 'Quicksand',
-      ),
+          primarySwatch: Colors.purple,
+          accentColor: Colors.purple,
+          fontFamily: 'Quicksand',
+          appBarTheme: AppBarTheme(
+              textTheme: ThemeData.light().textTheme.copyWith(
+                  headline6: TextStyle(
+                      fontFamily: 'OpenSans',
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold)))),
     );
   }
 }
@@ -31,18 +36,36 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<transection> _transactions = [
-    // transection(
-    //   id: 't1',
-    //   title: 'Novo Tênis de Corrida',
-    //   value: 310.76,
-    //   date: DateTime.now(),
-    // ),
-    // transection(
-    //   id: 't2',
-    //   title: 'Conta de Luz',
-    //   value: 211.30,
-    //   date: DateTime.now(),
-    // ),
+    transection(
+      id: 't1',
+      title: 'Novo Tênis de Corrida',
+      value: 310.76,
+      date: DateTime.now().subtract(Duration(days: 3)),
+    ),
+    transection(
+      id: 't2',
+      title: 'Conta de Luz',
+      value: 210.30,
+      date: DateTime.now().subtract(Duration(days: 4)),
+    ),
+    transection(
+      id: 't3',
+      title: 'Conta de Internet',
+      value: 110.00,
+      date: DateTime.now().subtract(Duration(days: 5)),
+    ),
+    transection(
+      id: 't4',
+      title: 'Conta de Água',
+      value: 80.00,
+      date: DateTime.now().subtract(Duration(days: 6)),
+    ),
+    transection(
+      id: 't5',
+      title: 'Lanche Shopping',
+      value: 50.00,
+      date: DateTime.now(),
+    ),
   ];
 
   List<transection> get _recentTransection {
