@@ -1,6 +1,7 @@
-// ignore_for_file: sized_box_for_whitespace
+// ignore_for_file: sized_box_for_whitespace, use_key_in_widget_constructors, prefer_const_constructors, prefer_final_fields, unused_field
 
 import 'package:flutter/material.dart';
+//import 'package:flutter/services.dart';
 import 'dart:math';
 import 'components/transaction_form.dart';
 import 'components/transaction_list.dart';
@@ -10,11 +11,14 @@ import 'models/transaction.dart';
 main() => runApp(ExpensesApp());
 
 class ExpensesApp extends StatelessWidget {
-  ExpensesApp({Key? key}) : super(key: key);
-  final ThemeData tema = ThemeData();
-
   @override
   Widget build(BuildContext context) {
+    // // para o dispositivo funcionar somente em modo "em pé"
+    // SystemChrome.setPreferredOrientations([
+    //   DeviceOrientation.portraitUp,
+    // ]);
+
+    final ThemeData tema = ThemeData();
     return MaterialApp(
       home: const MyHomePage(),
       theme: tema.copyWith(
@@ -55,6 +59,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _transactions = [];
+  bool _showChart = false;
 
   List<Transaction> get _recentTransactions {
     return _transactions.where((tr) {
@@ -120,14 +125,34 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              height: availableHeight * 0.25,
-              child: Chart(_recentTransactions),
+            //escolha do usuário
+            Row(
+              // alinhar no centro
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text('Exibir gráfico'),
+                Switch(
+                  value: _showChart,
+                  onChanged: (value) {
+                    // a partir do valor da variavel o metodo atribui um novo valor a _showChart
+                    setState(() {
+                      _showChart = value;
+                    });
+                  },
+                ),
+              ],
             ),
-            Container(
-              height: availableHeight * 0.75,
-              child: TransactionList(_transactions, _removeTransaction),
-            ),
+
+            // se etiver verdadeiro exibe um ou falso o outro
+            _showChart
+                ? Container(
+                    height: availableHeight * 0.25,
+                    child: Chart(_recentTransactions),
+                  )
+                : Container(
+                    height: availableHeight * 0.75,
+                    child: TransactionList(_transactions, _removeTransaction),
+                  ),
           ],
         ),
       ),
