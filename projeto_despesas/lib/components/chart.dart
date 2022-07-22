@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../models/transection.dart';
+import '../models/transaction.dart';
 import 'chart_bar.dart';
 
 class Chart extends StatelessWidget {
-  final List<transection> recentTransaction;
+  final List<Transaction> recentTransaction;
 
   const Chart(this.recentTransaction, {Key? key}) : super(key: key);
 
@@ -30,7 +30,7 @@ class Chart extends StatelessWidget {
         'day': DateFormat.E().format(weekDay)[0],
         'value': totalSum,
       };
-    }).toList();
+    }).reversed.toList();
   }
 
   double get _weekTotalValue {
