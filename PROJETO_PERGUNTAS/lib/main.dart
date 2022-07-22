@@ -1,9 +1,8 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, unnecessary_import, prefer_const_literals_to_create_immutables, unused_local_variable, unused_element, avoid_print, unused_import
 // ignore: avoid_web_libraries_in_flutter
-import 'dart:html';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/resultado.dart';
+import 'dart:math';
+import 'package:flutter/cupertino.dart';
 import './resultado.dart';
 import './questionario.dart';
 
